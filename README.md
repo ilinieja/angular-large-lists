@@ -2,12 +2,12 @@ Goal of this task is to create a reusable list component with three different ty
 
 * `/users` - returns flat array of all users.
 
-* `/products` - returns flat array of all products
+* `/payments` - returns flat array of all payments
 
 * `/countries` - returns flat array of all countries
 
 
-Application at main page should allow to navigate to three views `users` `products` and `countries`.
+Application at main page should allow to navigate to three views `users` `payments` and `countries` and see three lists.
 
 * Lists should be able to share common functionalities like selecting items, searching etc.
 
@@ -17,11 +17,13 @@ Application at main page should allow to navigate to three views `users` `produc
 
 * It should be possible to easily add new data type and create another list.
 
-* It should be possible to search item and filter list. In case of payments, we should be able to search by type, there's no need to search by specific payment fields.
-
 Bonus features:
 
+* It should be possible to search item and filter list. In case of payments, we should be able to search by type, there's no need to search by specific payment fields.
+
 * Add item details view with single list item.
+    * `/users/:id` - returns single user
+    * `/countries/:id` - returns single country
 
 * Handle empty dataset.
 
