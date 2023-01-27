@@ -1,42 +1,33 @@
-Goal of this task is to create a picker for values in tree data structure. Data structure is available under endpoints:
+Goal of this task is to create a reusable list component with three different types of data and items. Data structure is available in endpoints:
 
-* `/list` - returns flat array of all values. Each value has `name`, `id`, `isSelectable`, and `parentId`. `parentId` refers to parent of current node. Values at root level have `parentId: null`
+* `/users` - returns flat array of all users.
 
-* `/list/:id` - returns single item from values list by `id`
+* `/products` - returns flat array of all products
 
-* `/details` - returns all fields available for given value under `/list` endpoint with addition of `description`.
-
-* `/details/:id` - returns single item from details list by `id`
+* `/countries` - returns flat array of all countries
 
 
-Application at main page should allow to navigate through values like shown on given wireframe (Wireframe.png).
+Application at main page should allow to navigate to three views `users` `products` and `countries`.
 
-* At beginning there is only shown left column with root level values.
+* Lists should be able to share common functionalities like selecting items, searching etc.
 
-* Values which contain children should be marked with arrow icon. Clicking on them should enable right panel which displays all child values and allow to select them in same way.
+* Lists should be able to share common styles.
 
-* Leaf values (with no children) should not have arrow.
+* Lists should be able to display different items for different data types.
 
-* Selecting non-leaf value on right panel should display children values again, so list from right panel is displayed now on left and all new children are displayed on right.  
+* It should be possible to easily add new data type and create another list.
 
-* All leaf values can redirect to details page by clicking on "Show details".
-
-* Details page should display in neat way all values available under `/details/:id` endpoint for given value.
-
-* Some of non-leaf values may have set value `isSelectable: true`. In that case these items should also have "Show details" link and redirect to details page.
-
+* It should be possible to search item and filter list. In case of payments, we should be able to search by type, there's no need to search by specific payment fields.
 
 Bonus features:
 
-* Values at each level are sorted alphabetically
+* Add item details view with single list item.
 
-* At bottom of page there is displayed breadcrumb with current activated path of values. 
-
-* If value has `isSelectable: false` it should not be available to display its details page at all, even by directly entering url in browser.
+* Handle empty dataset.
 
 * Show spinner when there is waiting period for API response.
 
-* Unit tests.
+* Some example unit tests.
 
 
 What we pay attention to:
@@ -50,7 +41,7 @@ What we pay attention to:
 * API usage - calls should be limited to minimum.
 
 
-We advice to use Angular Material as UI library to minimize effort in layout styling.
+We advise to use Angular Material as UI library to minimize effort in layout styling. It does not have to be pixel perfect, wireframe is just a suggestion.
 
 API with data should be run locally using json-server https://www.npmjs.com/package/json-server
 
