@@ -1,0 +1,29 @@
+@import "src/vars.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+    box-shadow: $shadow-light;
+    background: $color-light;
+    max-height: 500px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 16px;
+}
+
+.search {
+    padding: 0 16px;
+
+    .search-input {
+        width: 100%;
+    }
+}
+
+.list {
+    overflow: auto;
+}

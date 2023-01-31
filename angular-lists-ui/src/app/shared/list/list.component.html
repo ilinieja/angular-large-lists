@@ -1,1 +1,19 @@
-<p>list works!</p>
+<span class="title">Title</span>
+<span *ngIf="name" class="title">{{ name }}</span>
+<div class="search">
+  <mat-form-field class="search-input">
+    <mat-label>Search</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput [formControl]="searchControl" />
+  </mat-form-field>
+</div>
+<div class="list">
+  <mat-selection-list>
+    <mat-list-option checkboxPosition="before" *ngFor="let item of data">
+      <ng-template
+        [ngTemplateOutlet]="templateRef"
+        [ngTemplateOutletContext]="{ $implicit: item }"
+      ></ng-template>
+    </mat-list-option>
+  </mat-selection-list>
+</div>
