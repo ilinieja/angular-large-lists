@@ -6,14 +6,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavModule } from './shared/nav/nav.module';
 
+export const imports = [
+  BrowserModule,
+  AppRoutingModule,
+  BrowserAnimationsModule,
+  NavModule,
+];
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NavModule,
-  ],
+  imports,
   providers: [],
   bootstrap: [AppComponent],
 })
