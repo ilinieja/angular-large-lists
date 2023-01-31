@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "concurrently --kill-others  \"npm run json-server\" \"npm run ui\"",
+    "json-server": "json-server data.json",
+    "ui": "cd angular-lists-ui && npm start"
+  },
+  "dependencies": {
+    "json-server": "^0.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
