@@ -7,16 +7,17 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { ListComponent } from './list.component';
 
+export const imports = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatListModule,
+  MatInputModule,
+  MatIconModule,
+];
 @NgModule({
   declarations: [ListComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatInputModule,
-    MatIconModule,
-  ],
+  imports,
   exports: [ListComponent],
 })
 export class ListModule {}

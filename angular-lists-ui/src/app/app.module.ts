@@ -10,19 +10,18 @@ import { CountriesModule } from './countries/countries.module';
 import { UsersModule } from './users/users.module';
 import { PaymentsModule } from './payments/payments.module';
 
-export const imports = [
-  BrowserModule,
-  AppRoutingModule,
-  BrowserAnimationsModule,
-  NavModule,
-  HttpClientModule,
-  CountriesModule,
-  UsersModule,
-  PaymentsModule,
-];
 @NgModule({
   declarations: [AppComponent],
-  imports,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NavModule,
+    HttpClientModule,
+    CountriesModule,
+    UsersModule,
+    PaymentsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
