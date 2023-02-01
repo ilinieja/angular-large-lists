@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { CrudService } from 'src/app/shared/api/crud.service';
+import { CrudService, GetParams } from 'src/app/shared/api/crud.service';
 import {
   removeDuplicatesByField,
   sortByField,
@@ -21,15 +21,27 @@ export class CountriesService extends CrudService<CountryModel> {
     super(http, CountryModel, countriesApiUrl);
   }
 
-  override get() {
-    return super
-      .get()
-      .pipe(
-        map((countries) =>
-          sortByField(removeDuplicatesByField(countries, 'code'), (a, b) =>
-            a.name.localeCompare(b.name)
-          )
-        )
-      );
+  override get({ query }: GetParams) {
+    return super.get().pipe(
+      map((countries) => {
+        const normalizesCountries = sortByField(
+          removeDuplicatesByField(countries, 'code'),
+          (a, b) => a.name.localeCompare(b.name)
+        );
+
+        return query
+          ? normalizesCountries.filter((country) =>
+              countryMatchesQuery(country, query)
+            )
+          : normalizesCountries;
+      })
+    );
   }
+}
+
+function countryMatchesQuery(country: CountryModel, query: string) {
+  return (
+    country.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+    country.code.toLocaleLowerCase() === query.toLocaleLowerCase()
+  );
 }

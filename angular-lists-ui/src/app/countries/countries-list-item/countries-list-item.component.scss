@@ -1,0 +1,26 @@
+@import "src/vars.scss";
+
+:host {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.small-image {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.title {
+    font-weight: 500;
+    @include ellipsis-overflow;
+}
+
+.note {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: $color-grey;
+    flex-shrink: 0;
+}

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { map, shareReplay, startWith } from 'rxjs';
+import { BehaviorSubject, map, shareReplay, startWith, switchMap } from 'rxjs';
 
 import { CountriesService } from '../api/countries.service';
 
@@ -10,7 +10,12 @@ import { CountriesService } from '../api/countries.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CountriesListComponent {
-  readonly countries = this.countriesService.get().pipe(shareReplay(1));
+  readonly searchQuery = new BehaviorSubject<string>('');
+
+  readonly countries = this.searchQuery.pipe(
+    switchMap((query) => this.countriesService.get({ query })),
+    shareReplay(1)
+  );
 
   readonly countriesLoading = this.countries.pipe(
     map(Boolean),
@@ -18,4 +23,8 @@ export class CountriesListComponent {
   );
 
   constructor(private readonly countriesService: CountriesService) {}
+
+  onSearchChange(query: string) {
+    this.searchQuery.next(query);
+  }
 }

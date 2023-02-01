@@ -1,3 +1,10 @@
-<app-list [data]="countries | async" [loading]="countriesLoading | async">
-    <ng-template let-item>{{item.id}}</ng-template>
+<app-list
+  name="Countries"
+  [data]="countries | async"
+  [loading]="countriesLoading | async"
+  (searchChange)="onSearchChange($event)"
+>
+  <ng-template let-item>
+    <app-countries-list-item [country]="item" />
+  </ng-template>
 </app-list>
