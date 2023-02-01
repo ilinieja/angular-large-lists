@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
 
@@ -7,11 +6,7 @@ import {
   ResourceService,
 } from 'src/app/shared/api/resource.service';
 
-import {
-  AggregatedPaymentModel,
-  PaymentModel,
-  PAYMENT_STATUSES,
-} from './payment.model';
+import { AggregatedPaymentModel, PAYMENT_STATUSES } from './payment.model';
 import { PaymentsService } from './payments.service';
 
 @Injectable({
@@ -27,7 +22,10 @@ export class AggregatedPaymentsService extends ResourceService<AggregatedPayment
     return of(resource as AggregatedPaymentModel);
   }
 
-  /** Returns payments grouped and counted by status. */
+  /**
+   * Returns payments grouped and counted by status.
+   * Filters by status if query provided.
+   */
   override get(params?: GetParams) {
     return this.paymentsService.get(params).pipe(
       map((payments) => {

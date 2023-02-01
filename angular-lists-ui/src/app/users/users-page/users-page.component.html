@@ -1,1 +1,6 @@
-<p>users-page works!</p>
+<app-list name="Users">
+    <ng-template let-item>
+        <app-users-list-item [user]="item" />
+    </ng-template>
+</app-list>
+  

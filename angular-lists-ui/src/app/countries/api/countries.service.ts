@@ -22,7 +22,10 @@ export class CountriesService extends ApiResourceService<CountryModel> {
     super(http, CountryModel, countriesApiUrl);
   }
 
-  /** Removes duplicates and sorts countries alphabetically, filters if query provided. */
+  /**
+   * Removes duplicates and sorts countries alphabetically.
+   * Filters by name and code if query provided.
+   */
   override get({ query }: GetParams = {}) {
     return super.get().pipe(
       map((countries) => {

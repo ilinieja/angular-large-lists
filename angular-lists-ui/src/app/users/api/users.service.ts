@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 
 import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
+import { GetParams } from 'src/app/shared/api/resource.service';
 import { environment } from 'src/environments/environment';
 
 import { UserModel } from './user.model';
@@ -15,4 +17,22 @@ export class UsersService extends ApiResourceService<UserModel> {
   constructor(private http: HttpClient) {
     super(http, UserModel, usersApiUrl);
   }
+
+  override get({ query }: GetParams = {}) {
+    return super.get().pipe(
+      map((users) => {
+        return query
+          ? users.filter((user) => userMatchesQuery(user, query))
+          : users;
+      })
+    );
+  }
+}
+
+function userMatchesQuery(user: UserModel, query: string) {
+  return (
+    user.firstName.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+    user.lastName.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+    user.email.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+  );
 }
