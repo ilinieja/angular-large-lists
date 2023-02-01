@@ -1,2 +1,42 @@
-<app-nav></app-nav>
-<router-outlet></router-outlet>
+<nav
+  mat-tab-nav-bar
+  mat-align-tabs="center"
+  mat-stretch-tabs="false"
+  backgroundColor="primary"
+  [tabPanel]="tabPanel"
+  class="nav"
+>
+  <a
+    mat-tab-link
+    routerLink="users"
+    routerLinkActive
+    #usersRla="routerLinkActive"
+    [active]="usersRla.isActive"
+    class="tab"
+  >
+    Users
+  </a>
+  <a
+    mat-tab-link
+    routerLink="countries"
+    routerLinkActive
+    #countriesRla="routerLinkActive"
+    [active]="countriesRla.isActive"
+    class="tab"
+  >
+    Countries
+  </a>
+  <a
+    mat-tab-link
+    routerLink="payments"
+    routerLinkActive
+    #paymentsRla="routerLinkActive"
+    [active]="paymentsRla.isActive"
+    class="tab"
+  >
+    Payments
+  </a>
+</nav>
+<mat-tab-nav-panel #tabPanel class="content">
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
