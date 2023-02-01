@@ -1,0 +1,18 @@
+@import "src/vars.scss";
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-weight: 500;
+    @include ellipsis-overflow;
+}
+
+.note {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: $color-grey;
+    flex-shrink: 0;
+}

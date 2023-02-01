@@ -1,1 +1,6 @@
-<p>payments-page works!</p>
+<app-list name="Payments">
+    <ng-template let-item>
+      <app-payments-list-item [payment]="item" />
+    </ng-template>
+  </app-list>
+  

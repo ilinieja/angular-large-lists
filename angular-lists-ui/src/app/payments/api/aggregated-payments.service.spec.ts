@@ -1,16 +1,16 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { PaymentsService } from './payments.service';
+import { AggregatedPaymentsService } from './aggregated-payments.service';
 
-describe('PaymentsService', () => {
-  let service: PaymentsService;
+describe('AggregatedPaymentsService', () => {
+  let service: AggregatedPaymentsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    service = TestBed.inject(PaymentsService);
+    service = TestBed.inject(AggregatedPaymentsService);
   });
 
   it('should be created', () => {

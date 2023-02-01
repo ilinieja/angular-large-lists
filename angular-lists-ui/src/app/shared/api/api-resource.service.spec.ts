@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-import { ResourceService } from './resource.service';
+import { ApiResourceService } from './api-resource.service';
 import { ResourceModel } from './resource.model';
 import { Injectable } from '@angular/core';
 
@@ -18,7 +18,7 @@ const mockModelEntity2 = new MockModel({ id: 'testId2', name: 'testName3' });
 const mockModelEntity3 = new MockModel({ id: 'testId3', name: 'testName3' });
 
 @Injectable()
-class MockService extends ResourceService<MockModel> {
+class MockService extends ApiResourceService<MockModel> {
   constructor(private http: HttpClient) {
     super(http, MockModel, apiUrl);
   }

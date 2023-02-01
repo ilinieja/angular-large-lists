@@ -17,6 +17,7 @@ import {
 } from 'rxjs';
 import { ResourceModel } from '../api/resource.model';
 import { ResourceService } from '../api/resource.service';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

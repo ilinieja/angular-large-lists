@@ -2,10 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import {
-  ResourceService,
-  GetParams,
-} from 'src/app/shared/api/resource.service';
+import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
+import { GetParams } from 'src/app/shared/api/resource.service';
 import {
   removeDuplicatesByField,
   sortByField,
@@ -16,8 +14,10 @@ import { CountryModel } from './country.model';
 
 export const countriesApiUrl = `${environment.apiUrl}/countries`;
 
-@Injectable()
-export class CountriesService extends ResourceService<CountryModel> {
+@Injectable({
+  providedIn: 'root',
+})
+export class CountriesService extends ApiResourceService<CountryModel> {
   constructor(private http: HttpClient) {
     super(http, CountryModel, countriesApiUrl);
   }
