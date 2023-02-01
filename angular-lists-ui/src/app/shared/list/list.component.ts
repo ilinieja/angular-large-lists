@@ -4,46 +4,49 @@ import {
   ContentChild,
   Input,
   TemplateRef,
-  Output,
-  EventEmitter,
-  OnInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, ReplaySubject, takeUntil } from 'rxjs';
+import {
+  debounceTime,
+  map,
+  merge,
+  shareReplay,
+  startWith,
+  switchMap,
+  take,
+} from 'rxjs';
 import { ResourceModel } from '../api/resource.model';
-
-const SEARCH_CHANGE_DELAY_MS = 200;
+import { ResourceService } from '../api/resource.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent<T extends ResourceModel<T>> implements OnInit {
+export class ListComponent<T extends ResourceModel<T>> {
   @Input() name?: string;
 
-  @Input() data: T[] | null = null;
-
-  @Input() loading: boolean | null = true;
-
-  @Output() searchChange = new EventEmitter<string>();
+  @Input() searchChangeDelay = 400;
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any> | null = null;
 
   searchControl = new FormControl('');
 
-  private readonly destroy = new ReplaySubject<void>(1);
+  readonly items = merge(
+    // First request all items once.
+    this.resourceService.get().pipe(take(1)),
+    // Then request on query change.
+    this.searchControl.valueChanges.pipe(
+      debounceTime(400),
+      map((query) => query ?? ''),
+      switchMap((query) => this.resourceService.get({ query }))
+    )
+  ).pipe(shareReplay(1));
 
-  ngOnInit() {
-    this.searchControl.valueChanges
-      .pipe(debounceTime(SEARCH_CHANGE_DELAY_MS), takeUntil(this.destroy))
-      .subscribe((value) => {
-        this.searchChange.emit(value ?? '');
-      });
-  }
+  readonly loading = merge(
+    this.items.pipe(map((countries) => !countries)),
+    this.searchControl.valueChanges.pipe(map(() => true))
+  ).pipe(startWith(true));
 
-  ngOnDestroy() {
-    this.destroy.next();
-    this.destroy.complete();
-  }
+  constructor(private readonly resourceService: ResourceService<T>) {}
 }

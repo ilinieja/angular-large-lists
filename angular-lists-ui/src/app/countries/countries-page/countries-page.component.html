@@ -1,1 +1,5 @@
-<app-countries-list class="list" />
+<app-list name="Countries">
+  <ng-template let-item>
+    <app-countries-list-item [country]="item" />
+  </ng-template>
+</app-list>

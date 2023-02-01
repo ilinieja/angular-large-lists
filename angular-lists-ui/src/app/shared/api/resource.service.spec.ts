@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-import { CrudService } from './crud.service';
+import { ResourceService } from './resource.service';
 import { ResourceModel } from './resource.model';
 import { Injectable } from '@angular/core';
 
@@ -18,13 +18,13 @@ const mockModelEntity2 = new MockModel({ id: 'testId2', name: 'testName3' });
 const mockModelEntity3 = new MockModel({ id: 'testId3', name: 'testName3' });
 
 @Injectable()
-class MockService extends CrudService<MockModel> {
+class MockService extends ResourceService<MockModel> {
   constructor(private http: HttpClient) {
     super(http, MockModel, apiUrl);
   }
 }
 
-describe('CrudService', () => {
+describe('ResourceService', () => {
   let service: MockService;
   let httpController: HttpTestingController;
 

@@ -5,10 +5,10 @@ import { map } from 'rxjs/operators';
 import { ResourceModel } from './resource.model';
 
 export interface GetParams {
-  query: string;
+  query?: string;
 }
 
-export abstract class CrudService<T extends ResourceModel<T>> {
+export abstract class ResourceService<T extends ResourceModel<T>> {
   constructor(
     private httpClient: HttpClient,
     private tConstructor: { new (m: Partial<T>, ...args: unknown[]): T },

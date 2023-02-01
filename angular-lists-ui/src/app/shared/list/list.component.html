@@ -7,12 +7,23 @@
   </mat-form-field>
 </div>
 <div class="list">
-  <mat-selection-list>
-    <mat-list-option checkboxPosition="before" *ngFor="let item of data">
-      <ng-template
-        [ngTemplateOutlet]="templateRef"
-        [ngTemplateOutletContext]="{ $implicit: item }"
-      ></ng-template>
-    </mat-list-option>
-  </mat-selection-list>
+  <ng-container *ngIf="!(loading | async); else loader">
+    <mat-selection-list *ngIf="(items | async)?.length">
+      <mat-list-option
+        checkboxPosition="before"
+        *ngFor="let item of items | async"
+      >
+        <ng-template
+          [ngTemplateOutlet]="templateRef"
+          [ngTemplateOutletContext]="{ $implicit: item }"
+        ></ng-template>
+      </mat-list-option>
+    </mat-selection-list>
+  </ng-container>
 </div>
+
+<ng-template #loader>
+  <div class="loader-container">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+</ng-template>

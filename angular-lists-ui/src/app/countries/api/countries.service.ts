@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { CrudService, GetParams } from 'src/app/shared/api/crud.service';
+import {
+  ResourceService,
+  GetParams,
+} from 'src/app/shared/api/resource.service';
 import {
   removeDuplicatesByField,
   sortByField,
@@ -13,15 +16,13 @@ import { CountryModel } from './country.model';
 
 export const countriesApiUrl = `${environment.apiUrl}/countries`;
 
-@Injectable({
-  providedIn: 'root',
-})
-export class CountriesService extends CrudService<CountryModel> {
+@Injectable()
+export class CountriesService extends ResourceService<CountryModel> {
   constructor(private http: HttpClient) {
     super(http, CountryModel, countriesApiUrl);
   }
 
-  override get({ query }: GetParams) {
+  override get({ query }: GetParams = {}) {
     return super.get().pipe(
       map((countries) => {
         const normalizesCountries = sortByField(
