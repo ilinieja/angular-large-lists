@@ -7,7 +7,11 @@ import {
   ResourceService,
 } from 'src/app/shared/api/resource.service';
 
-import { AggregatedPaymentModel, PAYMENT_STATUSES } from './payment.model';
+import {
+  AggregatedPaymentModel,
+  PaymentModel,
+  PAYMENT_STATUSES,
+} from './payment.model';
 import { PaymentsService } from './payments.service';
 
 @Injectable({
@@ -37,7 +41,7 @@ export class AggregatedPaymentsService extends ResourceService<AggregatedPayment
           }
         }
 
-        return Object.entries(statusCounts).map(
+        const aggregatedPayments = Object.entries(statusCounts).map(
           (statusCount) =>
             new AggregatedPaymentModel({
               id: statusCount[0],
@@ -45,6 +49,12 @@ export class AggregatedPaymentsService extends ResourceService<AggregatedPayment
               count: statusCount[1],
             })
         );
+
+        return params?.query
+          ? aggregatedPayments.filter((payment) =>
+              paymentMatchesQuery(payment, params?.query!)
+            )
+          : aggregatedPayments;
       })
     );
   }
@@ -64,4 +74,11 @@ export class AggregatedPaymentsService extends ResourceService<AggregatedPayment
   override delete(id: string) {
     return of();
   }
+}
+
+function paymentMatchesQuery(payment: AggregatedPaymentModel, query: string) {
+  return (
+    payment.id?.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
+    payment.status.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+  );
 }
