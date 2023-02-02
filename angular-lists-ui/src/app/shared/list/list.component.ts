@@ -19,6 +19,12 @@ import {
 import { ResourceModel } from '../api/resource.model';
 import { ResourceService } from '../api/resource.service';
 
+/**
+ * Gets, and renders list of items using child template for each element.
+ * Updates items on search query change.
+ * 
+ * Uses virtual scroll to improve performance with large lists.
+*/
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -28,7 +34,21 @@ import { ResourceService } from '../api/resource.service';
 export class ListComponent<T extends ResourceModel<T>> {
   @Input() name?: string;
 
-  @Input() searchChangeDelay = 400;
+  /** List item height, needed for virtual scroll calculations. */
+  @Input() itemHeightPx = 56;
+
+  /** Delay between search input change and new list request. */
+  @Input() searchChangeDelayMs = 400;
+
+  /**
+   * Control receiving selected items changes.
+   * Propagated to mat-selection-list.
+   *
+   * Quick option to keep component simple.
+   * Should be replaced with ControlValueAccessor
+   * if selection logic grows.
+   */
+  @Input() control = new FormControl([]);
 
   @ContentChild(TemplateRef) templateRef: TemplateRef<any> | null = null;
 
@@ -39,7 +59,7 @@ export class ListComponent<T extends ResourceModel<T>> {
     this.resourceService.get().pipe(take(1)),
     // Then request on query change.
     this.searchControl.valueChanges.pipe(
-      debounceTime(400),
+      debounceTime(this.searchChangeDelayMs),
       map((query) => query ?? ''),
       switchMap((query) => this.resourceService.get({ query }))
     )

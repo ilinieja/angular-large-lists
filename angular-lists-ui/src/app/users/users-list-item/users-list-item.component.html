@@ -3,7 +3,7 @@
   <span class="note">{{ user?.email }}</span>
 </div>
 <div class="avatar"></div>
-<img *ngIf="user?.avatarUrl; else avatarPlaceholder" [src]="user?.avatarUrl" class="image" />
+<img *ngIf="user?.avatarUrl; else avatarPlaceholder" [src]="user?.avatarUrl" class="image" alt='User avatar' />
 <ng-template #avatarPlaceholder>
     <div class="placeholder">
         <span class="placeholder-text">{{user?.firstName | slice:0:1}}{{user?.lastName | slice:0:1}}</span>

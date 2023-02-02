@@ -3,11 +3,13 @@
 :host {
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .column {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .title {

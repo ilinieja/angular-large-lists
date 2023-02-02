@@ -1,38 +1,51 @@
 @import "src/vars.scss";
 
 :host {
-    display: flex;
-    flex-direction: column;
-    box-shadow: $shadow-light;
-    background: $color-light;
-    max-height: min(100vh, 430px);
-    width: min(100vw, 400px);
-    overflow: hidden;
-    border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $shadow-light;
+  background: $color-light;
+  max-height: min(100vh, 430px);
+  width: min(100vw, 400px);
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .title {
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 16px;
 }
 
 .search {
-    padding: 0 16px;
+  padding: 0 16px;
 
-    .search-input {
-        width: 100%;
-    }
+  .search-input {
+    width: 100%;
+  }
 }
 
 .list {
-    overflow: auto;
+  height: 100%;
+  width: 100%;
+
+  // Override scroll wrapper width to prevent horizontal scroll
+  // when wide elements are inside (force them to shrink).
+  // @see: https://github.com/angular/components/issues/24277
+  ::ng-deep .cdk-virtual-scroll-content-wrapper {
+    max-width: 100% !important;
+  }
+}
+
+.item {
+    width: 100%;
+    overflow: hidden;
 }
 
 .loader-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
 }
