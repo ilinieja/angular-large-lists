@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
   Input,
   QueryList,
   TemplateRef,
@@ -53,19 +52,19 @@ import { ResourceService } from '../api/resource.service';
  */
 @UntilDestroy()
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+  selector: 'app-resource-list',
+  templateUrl: './resource-list.component.html',
+  styleUrls: ['./resource-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: ListComponent,
+      useExisting: ResourceListComponent,
       multi: true,
     },
   ],
 })
-export class ListComponent<T extends ResourceModel<T>>
+export class ResourceListComponent<T extends ResourceModel<T>>
   implements AfterViewInit, ControlValueAccessor
 {
   @Input() name?: string;
@@ -76,7 +75,8 @@ export class ListComponent<T extends ResourceModel<T>>
   /** Delay between search input change and new list request. */
   @Input() searchChangeDelayMs = 400;
 
-  @ContentChild(TemplateRef) templateRef: TemplateRef<any> | null = null;
+  /** Template to render for every item. */
+  @Input() listItemTemplate: TemplateRef<any> | null = null;
 
   @ViewChildren(MatListOption)
   matOptions?: QueryList<MatListOption>;

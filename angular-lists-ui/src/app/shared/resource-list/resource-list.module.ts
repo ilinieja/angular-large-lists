@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { ListComponent } from './list.component';
+import { ResourceListComponent } from './resource-list.component';
+import { SelectionListModule } from '../selection-list/selection-list.module';
 
 export const imports = [
   CommonModule,
@@ -18,10 +19,11 @@ export const imports = [
   MatIconModule,
   MatProgressSpinnerModule,
   ScrollingModule,
+  SelectionListModule,
 ];
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ResourceListComponent],
   imports,
-  exports: [ListComponent],
+  exports: [ResourceListComponent],
 })
 export class ListModule {}

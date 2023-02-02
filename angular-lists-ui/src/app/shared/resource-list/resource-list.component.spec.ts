@@ -3,23 +3,23 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResourceModel } from '../api/resource.model';
 
-import { ListComponent } from './list.component';
-import { imports } from './list.module';
+import { ResourceListComponent } from './resource-list.component';
+import { imports } from './resource-list.module';
 
 class MockModel extends ResourceModel<MockModel> {
   name!: string;
 }
-describe('ListComponent', () => {
-  let component: ListComponent<MockModel>;
-  let fixture: ComponentFixture<ListComponent<MockModel>>;
+describe('ResourceListComponent', () => {
+  let component: ResourceListComponent<MockModel>;
+  let fixture: ComponentFixture<ResourceListComponent<MockModel>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ListComponent],
+      declarations: [ResourceListComponent],
       imports: [...imports, NoopAnimationsModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListComponent<MockModel>);
+    fixture = TestBed.createComponent(ResourceListComponent<MockModel>);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

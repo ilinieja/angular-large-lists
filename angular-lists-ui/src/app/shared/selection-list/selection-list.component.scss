@@ -1,0 +1,16 @@
+.list {
+  height: 100%;
+  width: 100%;
+
+  // Override scroll wrapper width to prevent horizontal scroll
+  // when wide elements are inside (force them to shrink).
+  // @see: https://github.com/angular/components/issues/24277
+  ::ng-deep .cdk-virtual-scroll-content-wrapper {
+    max-width: 100% !important;
+  }
+}
+
+.item {
+  width: 100%;
+  overflow: hidden;
+}

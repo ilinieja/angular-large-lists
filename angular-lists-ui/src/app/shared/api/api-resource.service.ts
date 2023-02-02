@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Serializable } from '../interfaces/serializable.interface';
 import { CACHE_TTL_HEADER } from './cache/cache.interceptor';
 
 import { ResourceModel } from './resource.model';
@@ -24,7 +25,7 @@ export abstract class ApiResourceService<
     super();
   }
 
-  create(resource: Partial<T> & { serialize: () => T }): Observable<T> {
+  create(resource: Partial<T> & Serializable): Observable<T> {
     return this.httpClient
       .post<T>(`${this.apiUrl}`, resource.serialize())
       .pipe(map((result) => new this.tConstructor(result)));
@@ -44,7 +45,7 @@ export abstract class ApiResourceService<
       .pipe(map((result) => new this.tConstructor(result)));
   }
 
-  update(resource: Partial<T> & { serialize: () => T }): Observable<T> {
+  update(resource: Partial<T> & Serializable): Observable<T> {
     return this.httpClient
       .put<T>(`${this.apiUrl}/${resource.id}`, resource.serialize())
       .pipe(map((result) => new this.tConstructor(result)));

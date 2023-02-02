@@ -1,0 +1,21 @@
+<span *ngIf="name" class="title">{{ name }}</span>
+<div class="search">
+  <mat-form-field class="search-input">
+    <mat-label>Search</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput [formControl]="searchControl" />
+  </mat-form-field>
+</div>
+<app-selection-list
+  *ngIf="!(loading | async); else loader"
+  [itemHeightPx]="itemHeightPx"
+  [items]="items | async"
+  [listItemTemplate]="listItemTemplate"
+  class="list"
+/>
+
+<ng-template #loader>
+  <div class="loader-container">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+</ng-template>

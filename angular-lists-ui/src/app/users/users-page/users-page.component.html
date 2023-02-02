@@ -1,6 +1,5 @@
-<app-list name="Users">
-    <ng-template let-item>
-        <app-users-list-item [user]="item" />
-    </ng-template>
-</app-list>
-  
+<app-resource-list name="Users" [listItemTemplate]="listItem" />
+
+<ng-template #listItem let-item>
+    <app-users-list-item [user]="item" />
+</ng-template>
