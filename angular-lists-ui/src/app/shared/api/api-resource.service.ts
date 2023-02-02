@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CACHE_TTL_HEADER } from './cache/cache.interceptor';
 
 import { ResourceModel } from './resource.model';
 import { ResourceService, GetParams } from './resource.service';
 
+const DEFAULT_CACHE_TTL_SEC = 60 * 5; // 5 mins
+
 /**
  * Provides default implementations for API operations over CRUD-resource.
+ * Has 5-min cache enabled for GET requests.
  */
 export abstract class ApiResourceService<
   T extends ResourceModel<T>
@@ -14,7 +18,8 @@ export abstract class ApiResourceService<
   constructor(
     private httpClient: HttpClient,
     private tConstructor: { new (m: Partial<T>, ...args: unknown[]): T },
-    protected apiUrl: string
+    protected apiUrl: string,
+    protected cacheTtlSec = DEFAULT_CACHE_TTL_SEC
   ) {
     super();
   }
@@ -27,7 +32,9 @@ export abstract class ApiResourceService<
 
   get(params?: GetParams): Observable<T[]> {
     return this.httpClient
-      .get<T[]>(`${this.apiUrl}`)
+      .get<T[]>(`${this.apiUrl}`, {
+        headers: { [CACHE_TTL_HEADER]: `${this.cacheTtlSec}` },
+      })
       .pipe(map((result) => result.map((i) => new this.tConstructor(i))));
   }
 
