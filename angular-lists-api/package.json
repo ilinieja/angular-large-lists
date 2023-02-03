@@ -1,7 +1,9 @@
 {
+  "name": "json-server",
+  "version": "1.0.0",
+  "description": "Deploy JSON Server to Vercel",
   "scripts": {
-    "vercel build": "NODE_ENV=production node server.js",
-    "start": "concurrently --kill-others  \"node server.js\" \"cd angular-lists-ui && npm start\""
+    "start": "node server.js"
   },
   "dependencies": {
     "clone": "^2.1.2",
