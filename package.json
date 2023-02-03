@@ -1,10 +1,13 @@
 {
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=development node server.js"
+    "vercel build": "NODE_ENV=production node server.js",
+    "start": "concurrently --kill-others  \"node server.js\" \"cd angular-lists-ui && npm start\""
   },
   "dependencies": {
     "clone": "^2.1.2",
     "json-server": "^0.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
   }
 }
