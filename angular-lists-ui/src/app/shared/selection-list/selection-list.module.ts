@@ -6,9 +6,15 @@ import { FormsModule } from '@angular/forms';
 
 import { SelectionListComponent } from './selection-list.component';
 
+export const imports = [
+  CommonModule,
+  FormsModule,
+  MatListModule,
+  ScrollingModule,
+];
 @NgModule({
   declarations: [SelectionListComponent],
-  imports: [CommonModule, FormsModule, MatListModule, ScrollingModule],
+  imports,
   exports: [SelectionListComponent],
 })
 export class SelectionListModule {}

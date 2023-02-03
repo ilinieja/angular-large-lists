@@ -1,4 +1,4 @@
-.list {
+.list-container {
   height: 100%;
   width: 100%;
 
@@ -13,4 +13,11 @@
 .item {
   width: 100%;
   overflow: hidden;
+}
+
+.placeholder {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

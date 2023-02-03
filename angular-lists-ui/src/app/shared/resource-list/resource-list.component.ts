@@ -12,6 +12,7 @@ import {
   ViewChild,
   ViewChildren,
   AfterViewInit,
+  Host,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
@@ -33,22 +34,10 @@ import { ResourceModel } from '../api/resource.model';
 import { ResourceService } from '../api/resource.service';
 
 /**
- * Gets, and renders list of items using child template for each element.
+ * Gets items and passes it to selection list.
  * Updates items on search query change.
  *
- *
- * Uses virtual scroll to improve performance with large lists.
- * But there's some tricks needed to integrate virtual scroll
- * with selection list:
- *
- * By default selection list removes items from selection
- * if their element is removed from the view.
- * And virtual scroll removes elements that are out of view.
- *
- * We need to watch scroll and reapply selection for freshly
- * rendered items.
- *
- * @see: https://github.com/angular/components/issues/10122
+ * Injects the closest resource service provided above.
  */
 @UntilDestroy()
 @Component({
@@ -56,17 +45,8 @@ import { ResourceService } from '../api/resource.service';
   templateUrl: './resource-list.component.html',
   styleUrls: ['./resource-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: ResourceListComponent,
-      multi: true,
-    },
-  ],
 })
-export class ResourceListComponent<T extends ResourceModel<T>>
-  implements AfterViewInit, ControlValueAccessor
-{
+export class ResourceListComponent<T extends ResourceModel<T>> {
   @Input() name?: string;
 
   /** List item height, needed for virtual scroll calculations. */
@@ -76,15 +56,16 @@ export class ResourceListComponent<T extends ResourceModel<T>>
   @Input() searchChangeDelayMs = 400;
 
   /** Template to render for every item. */
-  @Input() listItemTemplate: TemplateRef<any> | null = null;
+  @Input() listItemTemplate: TemplateRef<unknown> | null = null;
+
+  /** Control for list selection. */
+  @Input() listControl: FormControl<T[] | null> = new FormControl<T[]>([]);
 
   @ViewChildren(MatListOption)
   matOptions?: QueryList<MatListOption>;
 
   @ViewChild('virtualScrollViewport')
   virtualScrollViewport?: CdkVirtualScrollViewport;
-
-  private selection: T[] = [];
 
   searchControl = new FormControl('');
 
@@ -104,95 +85,5 @@ export class ResourceListComponent<T extends ResourceModel<T>>
     this.searchControl.valueChanges.pipe(map(() => true))
   ).pipe(startWith(true));
 
-  constructor(
-    private readonly resourceService: ResourceService<T>,
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    readonly scrollDispatcher: ScrollDispatcher
-  ) {}
-
-  ngAfterViewInit(): void {
-    /** Watch scroll and sync selection with rendered items. */
-    this.scrollDispatcher
-      .scrolled()
-      .pipe(
-        untilDestroyed(this),
-        filter((scrollable) => this.virtualScrollViewport === scrollable),
-        // Debounce needs to be short enough to see checks
-        // even when scrolling fast.
-        debounceTime(20)
-      )
-      .subscribe(() => {
-        this.syncSelectionWithView();
-      });
-  }
-
-  /**
-   * Synchronizes selection and checked/unchecked states
-   * of rendered options.
-   */
-  private syncSelectionWithView(): void {
-    let needUpdate = false;
-
-    this.matOptions?.forEach((option) => {
-      const selected = this.selection.some((selectionItem) =>
-        selectionItem.equals(option.value)
-      );
-
-      if (selected !== option.selected) {
-        option.selected = selected;
-        needUpdate = true;
-      }
-    });
-
-    if (needUpdate) {
-      this.changeDetectorRef.detectChanges();
-    }
-  }
-
-  /**
-   * Adds or removes item from selection and propagates the change up.
-   */
-  onItemSelectedChange(selected: boolean, item: T) {
-    const itemIndex = this.selection.findIndex((selectionItem) =>
-      selectionItem.equals(item)
-    );
-    const itemInSelection = itemIndex > -1;
-
-    /**
-     * If item state matches selection -
-     * change is caused by state sync after rerender,
-     * ignore it.
-     */
-    if (selected === itemInSelection) {
-      return;
-    }
-
-    if (selected && !itemInSelection) {
-      this.selection.push(item);
-    } else if (!selected && itemInSelection) {
-      this.selection.splice(itemIndex, 1);
-    }
-
-    this.onChange(this.selection);
-  }
-
-  /** ControlValueAccessor implementation. */
-  set value(val: T[]) {
-    this.selection = val;
-    this.onChange(val);
-    this.onTouch(val);
-    this.syncSelectionWithView();
-  }
-  writeValue(value: T[]) {
-    this.value = value;
-  }
-
-  onChange: Function = () => {};
-  onTouch: Function = () => {};
-  registerOnChange(fn: Function) {
-    this.onChange = fn;
-  }
-  registerOnTouched(onTouched: Function) {
-    this.onTouch = onTouched;
-  }
+  constructor(private readonly resourceService: ResourceService<T>) {}
 }

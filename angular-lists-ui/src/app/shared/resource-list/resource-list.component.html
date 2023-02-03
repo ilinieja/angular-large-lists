@@ -10,7 +10,8 @@
   *ngIf="!(loading | async); else loader"
   [itemHeightPx]="itemHeightPx"
   [items]="items | async"
-  [listItemTemplate]="listItemTemplate"
+  [itemTemplate]="listItemTemplate"
+  [formControl]="listControl"
   class="list"
 />
 

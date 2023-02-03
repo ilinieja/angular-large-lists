@@ -15,10 +15,12 @@
   text-transform: uppercase;
   font-weight: 500;
   padding: 16px;
+  flex-shrink: 0;
 }
 
 .search {
   padding: 0 16px;
+  flex-shrink: 0;
 
   .search-input {
     width: 100%;
@@ -26,20 +28,8 @@
 }
 
 .list {
-  height: 100%;
+  flex-grow: 1;
   width: 100%;
-
-  // Override scroll wrapper width to prevent horizontal scroll
-  // when wide elements are inside (force them to shrink).
-  // @see: https://github.com/angular/components/issues/24277
-  ::ng-deep .cdk-virtual-scroll-content-wrapper {
-    max-width: 100% !important;
-  }
-}
-
-.item {
-    width: 100%;
-    overflow: hidden;
 }
 
 .loader-container {

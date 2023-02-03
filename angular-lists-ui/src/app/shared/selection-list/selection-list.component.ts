@@ -1,4 +1,5 @@
 import {
+  CdkVirtualForOf,
   CdkVirtualScrollViewport,
   ScrollDispatcher,
 } from '@angular/cdk/scrolling';
@@ -13,7 +14,7 @@ import {
   ViewChildren,
   AfterViewInit,
 } from '@angular/core';
-import { debounceTime, filter } from 'rxjs';
+import { debounceTime, filter, merge, EMPTY, Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatListOption } from '@angular/material/list';
 import { ControlValueAccessor } from '@angular/forms';
@@ -62,13 +63,16 @@ export class SelectionListComponent<T extends Comparable<T>>
   @Input() items: T[] | null = [];
 
   /** Template to render for every item. */
-  @Input() listItemTemplate: TemplateRef<any> | null = null;
+  @Input() itemTemplate: TemplateRef<any> | null = null;
 
   @ViewChildren(MatListOption)
-  matOptions?: QueryList<MatListOption>;
+  private matOptions?: QueryList<MatListOption>;
 
   @ViewChild('virtualScrollViewport')
-  virtualScrollViewport?: CdkVirtualScrollViewport;
+  private virtualScrollViewport?: CdkVirtualScrollViewport;
+
+  @ViewChild(CdkVirtualForOf)
+  private virtualForOf?: CdkVirtualForOf<T[]>;
 
   private selection: T[] = [];
 
@@ -78,15 +82,27 @@ export class SelectionListComponent<T extends Comparable<T>>
   ) {}
 
   ngAfterViewInit(): void {
-    /** Watch scroll and sync selection with rendered items. */
-    this.scrollDispatcher
-      .scrolled()
+    /**
+     * Watch virtual scroll rerenders and sync selection with rendered items.
+     *
+     * View change emits on all rerenders except scrollbar scroll,
+     * merging it with scroll dispatcher to catch these cases.
+     */
+    const syncTriggers = [
+      this.virtualForOf?.viewChange,
+      this.scrollDispatcher
+        .scrolled()
+        .pipe(
+          filter((scrollable) => this.virtualScrollViewport === scrollable)
+        ),
+    ].filter(Boolean) as Observable<unknown>[];
+
+    merge(...syncTriggers)
       .pipe(
         untilDestroyed(this),
-        filter((scrollable) => this.virtualScrollViewport === scrollable),
         // Debounce needs to be short enough to see checks
         // even when scrolling fast.
-        debounceTime(20)
+        debounceTime(10)
       )
       .subscribe(() => {
         this.syncSelectionWithView();

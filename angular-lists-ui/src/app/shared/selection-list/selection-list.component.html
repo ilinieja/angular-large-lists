@@ -1,9 +1,9 @@
 <cdk-virtual-scroll-viewport
   [itemSize]="itemHeightPx"
   #virtualScrollViewport
-  class="list"
+  class="list-container"
 >
-  <mat-selection-list *ngIf="items?.length">
+  <mat-selection-list *ngIf="items?.length else placeholder">
     <mat-list-option
       checkboxPosition="before"
       *cdkVirtualFor="let item of items; templateCacheSize: 0"
@@ -12,8 +12,13 @@
       class="item"
     >
       <ng-container
-        *ngTemplateOutlet="listItemTemplate; context: { $implicit: item }"
+        *ngTemplateOutlet="itemTemplate; context: { $implicit: item }"
       ></ng-container>
     </mat-list-option>
   </mat-selection-list>
+  <ng-template #placeholder>
+    <div class="placeholder">
+        <span>Nothing here...</span>
+    </div>
+  </ng-template>
 </cdk-virtual-scroll-viewport>
