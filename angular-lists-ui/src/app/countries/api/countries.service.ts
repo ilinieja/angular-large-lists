@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
 import { GetParams } from 'src/app/shared/api/resource.service';
 import {
+  normalizeQuery,
   removeDuplicatesByField,
   sortByField,
 } from 'src/app/shared/utils/utils';
@@ -45,8 +46,10 @@ export class CountriesService extends ApiResourceService<CountryModel> {
 }
 
 function countryMatchesQuery(country: CountryModel, query: string) {
+  const normalizedQuery = normalizeQuery(query);
+
   return (
-    country.name.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
-    country.code.toLocaleLowerCase() === query.toLocaleLowerCase()
+    country.name.toLocaleLowerCase().includes(normalizedQuery) ||
+    country.code.toLocaleLowerCase() === normalizedQuery
   );
 }

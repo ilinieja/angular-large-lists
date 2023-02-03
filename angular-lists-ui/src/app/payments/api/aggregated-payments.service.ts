@@ -5,6 +5,7 @@ import {
   GetParams,
   ResourceService,
 } from 'src/app/shared/api/resource.service';
+import { normalizeQuery } from 'src/app/shared/utils/utils';
 
 import { AggregatedPaymentModel, PAYMENT_STATUSES } from './payment.model';
 import { PaymentsService } from './payments.service';
@@ -75,8 +76,10 @@ export class AggregatedPaymentsService extends ResourceService<AggregatedPayment
 }
 
 function paymentMatchesQuery(payment: AggregatedPaymentModel, query: string) {
+  const normalizedQuery = normalizeQuery(query);
+
   return (
-    payment.id?.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
-    payment.status.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+    payment.id?.toLocaleLowerCase().includes(normalizedQuery) ||
+    payment.status.toLocaleLowerCase().includes(normalizedQuery)
   );
 }

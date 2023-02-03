@@ -4,5 +4,5 @@ export class CountryModel extends ResourceModel<CountryModel> {
   name!: string;
   flag!: string;
   code!: string;
-  someWeirdServerFieldNameWithCount!: number;
+  someWeirdServerFieldNameWithCount!: number | null;
 }

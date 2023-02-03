@@ -4,5 +4,5 @@ export class UserModel extends ResourceModel<UserModel> {
   firstName!: string;
   lastName!: string;
   email!: string;
-  avatarUrl!: string;
+  avatarUrl!: string | null;
 }

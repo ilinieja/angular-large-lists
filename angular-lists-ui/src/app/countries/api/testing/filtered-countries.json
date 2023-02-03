@@ -1,0 +1,79 @@
+[
+  {
+    "id": "8cdc5df5-9c36-4d52-a121-aaf36ec44809",
+    "name": "Argentina",
+    "flag": "http://dummyimage.com/50x50.png/ff4444/ffffff",
+    "code": "AR",
+    "someWeirdServerFieldNameWithCount": 2170
+  },
+  {
+    "id": "cc82bbbe-fb1d-498d-956b-474fc12e0acb",
+    "name": "Armenia",
+    "flag": "http://dummyimage.com/50x50.png/5fa2dd/ffffff",
+    "code": "AM",
+    "someWeirdServerFieldNameWithCount": 1475
+  },
+  {
+    "id": "0849ce04-af6c-42e4-bc42-e1839da2907e",
+    "name": "Belarus",
+    "flag": "http://dummyimage.com/50x50.png/ff4444/ffffff",
+    "code": "BY",
+    "someWeirdServerFieldNameWithCount": null
+  },
+  {
+    "id": "e3f16691-2fef-4edf-b355-5e89b4155143",
+    "name": "Bulgaria",
+    "flag": "http://dummyimage.com/50x50.png/dddddd/000000",
+    "code": "BG",
+    "someWeirdServerFieldNameWithCount": 1463
+  },
+  {
+    "id": "d3009433-140b-4ca7-a15e-2887b356378a",
+    "name": "Denmark",
+    "flag": "http://dummyimage.com/50x50.png/ff4444/ffffff",
+    "code": "DK",
+    "someWeirdServerFieldNameWithCount": null
+  },
+  {
+    "id": "ef5c2e03-8418-412b-8f31-6bc55b71b239",
+    "name": "Hungary",
+    "flag": "http://dummyimage.com/50x50.png/ff4444/ffffff",
+    "code": "HU",
+    "someWeirdServerFieldNameWithCount": 1157
+  },
+  {
+    "id": "7501241b-0c0b-40cc-9383-7cb5e32ed7a6",
+    "name": "Madagascar",
+    "flag": "http://dummyimage.com/50x50.png/ff4444/ffffff",
+    "code": "MG",
+    "someWeirdServerFieldNameWithCount": 464
+  },
+  {
+    "id": "e11dea7b-c188-49e9-ae66-88049fe2f9a5",
+    "name": "Martinique",
+    "flag": "http://dummyimage.com/50x50.png/5fa2dd/ffffff",
+    "code": "MQ",
+    "someWeirdServerFieldNameWithCount": null
+  },
+  {
+    "id": "8058dc41-03d0-482b-9fc1-54ee744ea374",
+    "name": "Myanmar",
+    "flag": "http://dummyimage.com/50x50.png/dddddd/000000",
+    "code": "MM",
+    "someWeirdServerFieldNameWithCount": null
+  },
+  {
+    "id": "75a7066b-8561-4722-9d65-40cd03e45f6f",
+    "name": "Paraguay",
+    "flag": "http://dummyimage.com/50x50.png/dddddd/000000",
+    "code": "PY",
+    "someWeirdServerFieldNameWithCount": 730
+  },
+  {
+    "id": "1e9b3999-0be5-4eae-bfac-e95bfdaa8a4c",
+    "name": "United Arab Emirates",
+    "flag": "http://dummyimage.com/50x50.png/5fa2dd/ffffff",
+    "code": "AE",
+    "someWeirdServerFieldNameWithCount": null
+  }
+]

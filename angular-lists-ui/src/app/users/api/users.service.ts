@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 
 import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
 import { GetParams } from 'src/app/shared/api/resource.service';
+import { normalizeQuery } from 'src/app/shared/utils/utils';
 import { environment } from 'src/environments/environment';
 
 import { UserModel } from './user.model';
@@ -30,9 +31,11 @@ export class UsersService extends ApiResourceService<UserModel> {
 }
 
 function userMatchesQuery(user: UserModel, query: string) {
+  const normalizedQuery = normalizeQuery(query);
+
   return (
-    user.firstName.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
-    user.lastName.toLocaleLowerCase().includes(query.toLocaleLowerCase()) ||
-    user.email.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+    user.firstName.toLocaleLowerCase().includes(normalizedQuery) ||
+    user.lastName.toLocaleLowerCase().includes(normalizedQuery) ||
+    user.email.toLocaleLowerCase().includes(normalizedQuery)
   );
 }

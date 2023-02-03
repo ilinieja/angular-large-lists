@@ -23,3 +23,8 @@ export function sortByField<T>(
 ): T[] {
   return items.slice().sort((itemA, itemB) => comparator(itemA, itemB));
 }
+
+
+export function normalizeQuery(query: string) {
+  return query.trim().toLocaleLowerCase();
+}

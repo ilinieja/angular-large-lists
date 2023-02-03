@@ -1,0 +1,7 @@
+[
+  { "id": "wrong_payslip", "status": "Wrong Payslip", "count": 127 },
+  { "id": "wrong_address", "status": "Wrong Address", "count": 97 },
+  { "id": "delivery_error", "status": "Delivery Error", "count": 113 },
+  { "id": "successful", "status": "Successful", "count": 565 },
+  { "id": "declined", "status": "Declined", "count": 98 }
+]
