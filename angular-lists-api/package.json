@@ -1,7 +1,5 @@
 {
-  "name": "json-server",
-  "version": "1.0.0",
-  "description": "Deploy JSON Server to Vercel",
+  "name": "angular-lists-api",
   "scripts": {
     "start": "node server.js"
   },
