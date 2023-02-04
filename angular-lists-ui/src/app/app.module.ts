@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,7 @@ import { PaymentsModule } from './payments/payments.module';
 import { CacheInterceptor } from './shared/api/cache/cache.interceptor';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { ErrorsInterceptor } from './shared/api/errors/errors.interceptor';
+import { GlobalErrorHandler } from './global-error-handler';
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,6 +49,10 @@ import { ErrorsInterceptor } from './shared/api/errors/errors.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorsInterceptor,
       multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
     },
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
