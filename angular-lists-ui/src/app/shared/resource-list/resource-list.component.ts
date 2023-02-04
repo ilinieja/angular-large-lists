@@ -1,23 +1,16 @@
-import {
-  CdkVirtualScrollViewport,
-  ScrollDispatcher,
-} from '@angular/cdk/scrolling';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   Input,
   QueryList,
   TemplateRef,
   ViewChild,
   ViewChildren,
-  AfterViewInit,
-  Host,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   debounceTime,
-  filter,
   map,
   merge,
   shareReplay,
@@ -25,10 +18,7 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatListOption } from '@angular/material/list';
-import { ControlValueAccessor } from '@angular/forms';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { ResourceModel } from '../api/resource.model';
 import { ResourceService } from '../api/resource.service';
@@ -39,7 +29,6 @@ import { ResourceService } from '../api/resource.service';
  *
  * Injects the closest resource service provided above.
  */
-@UntilDestroy()
 @Component({
   selector: 'app-resource-list',
   templateUrl: './resource-list.component.html',

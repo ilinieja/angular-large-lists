@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$indigo-palette: mat.define-palette(mat.$indigo-palette, 600);
+$blue-palette: mat.define-palette(mat.$blue-palette, 600);
+
+$indigo-light-theme: mat.define-light-theme((
+ color: (
+   primary: $indigo-palette,
+   accent: $indigo-palette,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+$blue-light-theme: mat.define-light-theme((
+ color: (
+   primary: $blue-palette,
+   accent: $blue-palette,
+ ),
+));
+
+@include mat.all-component-themes($indigo-light-theme);
+
+/** 
+* Indigo doesn't contrasts enough with dark snackbar background, 
+* adjusting theme for it to lighter blue.
+*/
+@include mat.snack-bar-color($blue-light-theme);
