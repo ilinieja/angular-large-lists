@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Serializable } from '../interfaces/serializable.interface';
-import { CACHE_TTL_HEADER } from './cache/cache.interceptor';
+import { CACHE_TTL_HEADER } from '../cache/cache.interceptor';
 
 import { ResourceModel } from './resource.model';
 import { ResourceService, GetParams } from './resource.service';

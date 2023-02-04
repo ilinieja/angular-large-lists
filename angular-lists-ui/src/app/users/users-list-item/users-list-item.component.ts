@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { UserModel } from '../api/user.model';
+import { UserModel } from '../users.model';
 
 @Component({
   selector: 'app-users-list-item',

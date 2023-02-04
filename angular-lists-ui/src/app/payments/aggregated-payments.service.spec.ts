@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { AggregatedPaymentsService } from './aggregated-payments.service';
-import { AggregatedPaymentModel } from './payment.model';
+import { AggregatedPaymentModel } from './payments.model';
 
 import paymentsResponse from './testing/payments-response.json';
 import aggregatedPayments from './testing/aggregated-payments.json';

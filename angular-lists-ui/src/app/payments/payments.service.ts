@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
+import { ApiResourceService } from 'src/app/shared/resource/api-resource.service';
 import { environment } from 'src/environments/environment';
 
-import { PaymentModel } from './payment.model';
+import { PaymentModel } from './payments.model';
 
 export const paymentsApiUrl = `${environment.apiUrl}/payments`;
 

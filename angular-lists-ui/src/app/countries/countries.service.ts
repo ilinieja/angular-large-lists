@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
-import { GetParams } from 'src/app/shared/api/resource.service';
+import { ApiResourceService } from 'src/app/shared/resource/api-resource.service';
+import { GetParams } from 'src/app/shared/resource/resource.service';
 import {
   normalizeQuery,
   removeDuplicatesByField,
@@ -11,7 +11,7 @@ import {
 } from 'src/app/shared/utils/utils';
 import { environment } from 'src/environments/environment';
 
-import { CountryModel } from './country.model';
+import { CountryModel } from './countries.model';
 
 export const countriesApiUrl = `${environment.apiUrl}/countries`;
 

@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { countriesApiUrl, CountriesService } from './countries.service';
-import { CountryModel } from './country.model';
+import { CountryModel } from './countries.model';
 
 import countriesResponse from './testing/countries-response.json';
 import normalizedCountries from './testing/normalized-countries.json';

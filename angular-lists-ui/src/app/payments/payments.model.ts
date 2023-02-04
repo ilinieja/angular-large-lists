@@ -1,4 +1,4 @@
-import { ResourceModel } from 'src/app/shared/api/resource.model';
+import { ResourceModel } from 'src/app/shared/resource/resource.model';
 
 export class PaymentModel extends ResourceModel<PaymentModel> {
   status!: string;
@@ -13,10 +13,10 @@ export class AggregatedPaymentModel extends ResourceModel<AggregatedPaymentModel
   count!: number;
 }
 
-export const PAYMENT_STATUSES: {[key: string]: string} = {
-  wrong_payslip: "Wrong Payslip",
-  wrong_address: "Wrong Address",
-  delivery_error: "Delivery Error",
-  successful: "Successful",
-  declined: "Declined",
-}
+export const PAYMENT_STATUSES: { [key: string]: string } = {
+  wrong_payslip: 'Wrong Payslip',
+  wrong_address: 'Wrong Address',
+  delivery_error: 'Delivery Error',
+  successful: 'Successful',
+  declined: 'Declined',
+};

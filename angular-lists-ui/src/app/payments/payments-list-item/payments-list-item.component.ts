@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AggregatedPaymentModel } from '../api/payment.model';
+
+import { AggregatedPaymentModel } from '../payments.model';
 
 @Component({
   selector: 'app-payments-list-item',

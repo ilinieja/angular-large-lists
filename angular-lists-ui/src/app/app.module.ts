@@ -7,6 +7,7 @@ import {
   MatSnackBarModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material/snack-bar';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 import { environment } from 'src/environments/environment';
 
@@ -15,10 +16,9 @@ import { AppComponent } from './app.component';
 import { CountriesModule } from './countries/countries.module';
 import { UsersModule } from './users/users.module';
 import { PaymentsModule } from './payments/payments.module';
-import { CacheInterceptor } from './shared/api/cache/cache.interceptor';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { ErrorsInterceptor } from './shared/api/errors/errors.interceptor';
-import { GlobalErrorHandler } from './global-error-handler';
+import { CacheInterceptor } from './shared/cache/cache.interceptor';
+import { ErrorsInterceptor } from './shared/errors/errors.interceptor';
+import { GlobalErrorHandler } from './shared/errors/global-error-handler';
 
 @NgModule({
   declarations: [AppComponent],

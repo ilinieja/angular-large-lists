@@ -13,7 +13,7 @@ export abstract class ResourceModel<T>
   }
 
   public serialize(): any {
-    return JSON.parse(JSON.stringify(this));
+    return JSON.stringify(this);
   }
 
   public equals(model: ResourceModel<T>) {

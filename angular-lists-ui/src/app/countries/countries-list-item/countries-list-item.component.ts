@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CountryModel } from '../api/country.model';
+import { CountryModel } from '../countries.model';
 
 @Component({
   selector: 'app-countries-list-item',

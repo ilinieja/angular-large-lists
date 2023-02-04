@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ResourceService } from 'src/app/shared/api/resource.service';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
 
-import { AggregatedPaymentsService } from '../api/aggregated-payments.service';
-import { AggregatedPaymentModel } from '../api/payment.model';
+import { AggregatedPaymentsService } from '../aggregated-payments.service';
+import { AggregatedPaymentModel } from '../payments.model';
 
 @Component({
   selector: 'app-payments-page',

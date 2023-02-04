@@ -20,8 +20,8 @@ import {
 } from 'rxjs';
 import { MatListOption } from '@angular/material/list';
 
-import { ResourceModel } from '../api/resource.model';
-import { ResourceService } from '../api/resource.service';
+import { ResourceModel } from '../resource/resource.model';
+import { ResourceService } from '../resource/resource.service';
 
 /**
  * Gets items and passes it to selection list.

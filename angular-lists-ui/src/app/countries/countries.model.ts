@@ -1,4 +1,4 @@
-import { ResourceModel } from 'src/app/shared/api/resource.model';
+import { ResourceModel } from 'src/app/shared/resource/resource.model';
 
 export class CountryModel extends ResourceModel<CountryModel> {
   name!: string;

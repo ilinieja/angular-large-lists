@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ResourceService } from 'src/app/shared/api/resource.service';
+import { ResourceService } from 'src/app/shared/resource/resource.service';
 
-import { UserModel } from '../api/user.model';
-import { UsersService } from '../api/users.service';
+import { UserModel } from '../users.model';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-users-page',

@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
-import { ApiResourceService } from 'src/app/shared/api/api-resource.service';
-import { GetParams } from 'src/app/shared/api/resource.service';
+import { ApiResourceService } from 'src/app/shared/resource/api-resource.service';
+import { GetParams } from 'src/app/shared/resource/resource.service';
 import { normalizeQuery } from 'src/app/shared/utils/utils';
 import { environment } from 'src/environments/environment';
 
-import { UserModel } from './user.model';
+import { UserModel } from './users.model';
 
 export const usersApiUrl = `${environment.apiUrl}/users`;
 

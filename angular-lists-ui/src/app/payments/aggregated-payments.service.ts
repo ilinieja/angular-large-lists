@@ -4,10 +4,10 @@ import { map, of } from 'rxjs';
 import {
   GetParams,
   ResourceService,
-} from 'src/app/shared/api/resource.service';
+} from 'src/app/shared/resource/resource.service';
 import { normalizeQuery } from 'src/app/shared/utils/utils';
 
-import { AggregatedPaymentModel, PAYMENT_STATUSES } from './payment.model';
+import { AggregatedPaymentModel, PAYMENT_STATUSES } from './payments.model';
 import { PaymentsService } from './payments.service';
 
 @Injectable({
