@@ -1,4 +1,8 @@
-<app-resource-list name="Users" [listItemTemplate]="listItem" />
+<app-resource-list
+    name="Users"
+    [listItemTemplate]="listItem"
+    [listControl]="listControl"
+/>
 
 <ng-template #listItem let-item>
     <app-users-list-item [user]="item" />

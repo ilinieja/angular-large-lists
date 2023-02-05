@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { SelectionsService } from 'src/app/selections/selections.service';
 import { ResourceService } from 'src/app/shared/resource/resource.service';
 
 import { CountriesService } from '../countries.service';
@@ -17,4 +18,8 @@ import { CountryModel } from '../countries.model';
     },
   ],
 })
-export class CountriesPageComponent {}
+export class CountriesPageComponent {
+  listControl = this.selectionsService.countriesControl;
+
+  constructor(private readonly selectionsService: SelectionsService) {}
+}

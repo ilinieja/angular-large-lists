@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { SelectionsService } from 'src/app/selections/selections.service';
 import { ResourceService } from 'src/app/shared/resource/resource.service';
 
-import { UserModel } from '../users.model';
+import { UserModel } from '../user.model';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -17,4 +18,8 @@ import { UsersService } from '../users.service';
     },
   ],
 })
-export class UsersPageComponent {}
+export class UsersPageComponent {
+  listControl = this.selectionsService.usersControl;
+
+  constructor(private readonly selectionsService: SelectionsService) {}
+}

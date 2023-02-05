@@ -1,4 +1,8 @@
-<app-resource-list name="Payments" [listItemTemplate]="listItem" />
+<app-resource-list 
+    name="Payments" 
+    [listItemTemplate]="listItem" 
+    [listControl]="listControl"
+/>
 
 <ng-template #listItem let-item>
     <app-payments-list-item [payment]="item" />

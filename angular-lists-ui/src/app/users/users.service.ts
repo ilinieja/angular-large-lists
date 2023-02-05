@@ -7,7 +7,7 @@ import { GetParams } from 'src/app/shared/resource/resource.service';
 import { normalizeQuery } from 'src/app/shared/utils/utils';
 import { environment } from 'src/environments/environment';
 
-import { UserModel } from './users.model';
+import { UserModel } from './user.model';
 
 export const usersApiUrl = `${environment.apiUrl}/users`;
 

@@ -9,7 +9,7 @@ Featuring:
 - [UI data caching using interceptor](https://github.com/ilinieja/angular-lists/tree/main/angular-lists-ui/src/app/shared/cache)
 - [Custom form control implementation](https://github.com/ilinieja/angular-lists/blob/main/angular-lists-ui/src/app/shared/selection-list/selection-list.component.ts) using [ControlValueAccessor](https://angular.io/api/forms/ControlValueAccessor)  
 - [HTTP error interception](https://github.com/ilinieja/angular-lists/blob/main/angular-lists-ui/src/app/shared/errors/errors.interceptor.ts)
-- [Custom global error handling](https://github.com/ilinieja/angular-lists/blob/main/angular-lists-ui/src/app/global-error-handler.ts)
+- [Custom global error handling](https://github.com/ilinieja/angular-lists/blob/main/angular-lists-ui/src/app/shared/errors/global-error-handler.ts)
 - [Material theme customization](https://github.com/ilinieja/angular-lists/blob/main/angular-lists-ui/src/styles/mat-theme.scss)
 
 ## [Demo](https://angular-lists.vercel.app)

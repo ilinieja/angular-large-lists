@@ -5,7 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { usersApiUrl, UsersService } from './users.service';
-import { UserModel } from './users.model';
+import { UserModel } from './user.model';
 
 import usersResponse from './testing/users-response.json';
 import filteredUsers from './testing/filtered-users.json';
