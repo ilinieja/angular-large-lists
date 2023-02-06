@@ -13,8 +13,8 @@ const apiUrl = 'host/mock';
 class MockModel extends ResourceModel<MockModel> {
   name!: string;
 }
-const mockModelEntity1 = new MockModel({ id: 'testId1', name: 'testName3' });
-const mockModelEntity2 = new MockModel({ id: 'testId2', name: 'testName3' });
+const mockModelEntity1 = new MockModel({ id: 'testId1', name: 'testName1' });
+const mockModelEntity2 = new MockModel({ id: 'testId2', name: 'testName2' });
 const mockModelEntity3 = new MockModel({ id: 'testId3', name: 'testName3' });
 
 @Injectable()
@@ -47,8 +47,9 @@ describe('ResourceService', () => {
         method: 'POST',
         url: `${apiUrl}`,
       });
+      req.flush(mockModelEntity1);
 
-      req.flush(mockModelEntity1.serialize());
+      expect(req.request.body).toEqual(mockModelEntity1.serialize());
     });
   });
 
@@ -60,12 +61,12 @@ describe('ResourceService', () => {
         expect(res).toEqual(response);
       });
 
-      const req = httpController.expectOne({
-        method: 'GET',
-        url: `${apiUrl}`,
-      });
-
-      req.flush(response.map((entity) => entity.serialize()));
+      httpController
+        .expectOne({
+          method: 'GET',
+          url: `${apiUrl}`,
+        })
+        .flush(response);
     });
   });
 
@@ -76,12 +77,12 @@ describe('ResourceService', () => {
         expect(res).toEqual(mockModelEntity1);
       });
 
-      const req = httpController.expectOne({
-        method: 'GET',
-        url: `${apiUrl}/${id}`,
-      });
-
-      req.flush(mockModelEntity1.serialize());
+      httpController
+        .expectOne({
+          method: 'GET',
+          url: `${apiUrl}/${id}`,
+        })
+        .flush(mockModelEntity1);
     });
   });
 
@@ -95,8 +96,9 @@ describe('ResourceService', () => {
         method: 'PUT',
         url: `${apiUrl}/${mockModelEntity1.id}`,
       });
+      req.flush(mockModelEntity1);
 
-      req.flush(mockModelEntity1.serialize());
+      expect(req.request.body).toEqual(mockModelEntity1.serialize());
     });
   });
 
@@ -106,12 +108,12 @@ describe('ResourceService', () => {
         expect(res).toBeNull();
       });
 
-      const req = httpController.expectOne({
-        method: 'DELETE',
-        url: `${apiUrl}/${mockModelEntity1.id}`,
-      });
-
-      req.flush(null);
+      httpController
+        .expectOne({
+          method: 'DELETE',
+          url: `${apiUrl}/${mockModelEntity1.id}`,
+        })
+        .flush(null);
     });
   });
 });
