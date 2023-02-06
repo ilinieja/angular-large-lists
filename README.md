@@ -21,7 +21,7 @@ Both [UI](https://angular-lists.vercel.app) and mock [API](https://angular-lists
 To run the Angular app on 4200 and JSON-server on 3000 (default ports) run (from this directory):
 
 ```bash
-npx concurrently --kill-others "npx json-server data.json" "cd ./angular-lists-ui/ && npm start"
+npx concurrently --kill-others "npx json-server data.json" "cd ./angular-lists-ui/ && npm i && npm start"
 ```
 
 ## Implementation notes
