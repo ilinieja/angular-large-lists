@@ -1,6 +1,6 @@
 # POC Angular lists app
 
-POC Angular application that displays 3 pages with different lists using reusable selection list component.
+POC Angular application that handles huge selection lists using reusable vitrual scroll selection list component.
 
 Featuring:
 - [Virtual scroll](https://material.angular.io/cdk/scrolling/overview) to handle large lists (and its [integration](https://github.com/ilinieja/angular-lists/tree/main/angular-lists-ui/src/app/shared/selection-list) with [Material selection list](https://material.angular.io/components/list/api))
